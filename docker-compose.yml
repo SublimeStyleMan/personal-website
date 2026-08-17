@@ -5,7 +5,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/workspace
-      - node_modules:/workspace/node_modules
+      - node_modules:/workspace/client/node_modules
+    working_dir: /workspace/client
     ports:
       - "5173:5173"
     stdin_open: true
