@@ -1,0 +1,15 @@
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+      - node_modules:/workspace/node_modules
+    ports:
+      - "5173:5173"
+    stdin_open: true
+    tty: true
+
+volumes:
+  node_modules:
