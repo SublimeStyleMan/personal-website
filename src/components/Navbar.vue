@@ -1,7 +1,47 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const isOpen = ref(false);
+
+// weather variable to dynamically change the background color of the navbar based on the weather condition
+const weather = ref("clear");
+
+// Get location and fetch weather data
+navigator.geolocation.getCurrentPosition(async (position) => {
+  console.log("Position:", position);
+
+  const { latitude, longitude } = position.coords;
+  const apiKey = "YOUR_OPENWEATHERMAP_API_KEY"; // Replace with your OpenWeatherMap API key
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    weather.value = data.weather[0].main.toLowerCase();
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+  }
+});
+
+// Changes background color based on the weather condition
+const weatherBackground = computed(() => {
+  switch (weather.value) {
+    case "rain":
+      return "bg-slate-900";
+
+    case "snow":
+      return "bg-blue-100";
+
+    case "clear":
+      return "bg-sky-400";
+
+    case "cloudy":
+      return "bg-slate-500";
+
+    default:
+      return "bg-gray-900";
+  }
+});
 </script>
 
 <template>
