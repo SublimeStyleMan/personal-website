@@ -30,5 +30,9 @@ dist/
 coverage/
 playwright-report/
 test-results/
+service/PorfolioApi.Services/bin/
+service/PortfolioApi.Api/obj/
+service/PortfolioApi.Api/bin/
+service/PortfolioApi.Services/obj/
 .DS_Store
 Thumbs.db
