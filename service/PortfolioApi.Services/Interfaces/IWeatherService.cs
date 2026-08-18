@@ -1,4 +1,6 @@
-namespace PortfolioApi.Services;
+using PortfolioApi.Services.DTOs;
+
+namespace PortfolioApi.Services.Interfaces;
 
 public interface IWeatherService
 {

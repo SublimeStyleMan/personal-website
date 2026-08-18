@@ -1,23 +1,26 @@
 using System.Text.Json;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using PortfolioApi.Services.DTOs;
+using PortfolioApi.Services.Interfaces;
+using PortfolioApi.Services.Options;
 
-namespace PortfolioApi.Services;
+namespace PortfolioApi.Services.Services;
 
 public class WeatherService : IWeatherService
 {
     private readonly HttpClient _httpClient;
-    private readonly IConfiguration _configuration;
+    private readonly OpenWeatherOptions _options;
 
-    public WeatherService(HttpClient httpClient, IConfiguration configuration)
+    public WeatherService(HttpClient httpClient, IOptions<OpenWeatherOptions> options)
     {
         _httpClient = httpClient;
-        _configuration = configuration;
+        _options = options.Value;
     }
 
     public async Task<WeatherResponseDto?> GetCurrentWeatherAsync(string city)
     {
-        var apiKey = _configuration["OpenWeather:ApiKey"];
-        var baseUrl = _configuration["OpenWeather:BaseUrl"];
+        var apiKey = _options.ApiKey;
+        var baseUrl = _options.BaseUrl;
 
         if (string.IsNullOrWhiteSpace(apiKey) || string.IsNullOrWhiteSpace(baseUrl))
         {

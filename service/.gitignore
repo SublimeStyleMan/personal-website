@@ -1,0 +1,14 @@
+# .NET build outputs
+**/bin/
+**/obj/
+**/.vs/
+**/.idea/
+*.user
+*.suo
+
+# Local environment / secrets
+PortfolioApi.Api/appsettings.json
+PortfolioApi.Api/appsettings.Development.json
+
+# Optional: keep a template file if you want one later
+# PortfolioApi.Api/appsettings.Sample.json

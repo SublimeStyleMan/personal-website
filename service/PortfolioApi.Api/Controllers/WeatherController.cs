@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using PortfolioApi.Services;
+using PortfolioApi.Services.Interfaces;
 
 namespace PortfolioApi.Api.Controllers;
 

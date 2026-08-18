@@ -1,4 +1,4 @@
-namespace PortfolioApi.Services;
+namespace PortfolioApi.Services.DTOs;
 
 public class WeatherResponseDto
 {
