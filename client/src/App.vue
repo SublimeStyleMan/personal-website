@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Navbar from "./components/Navbar.vue";
+import Canvas from "./components/Canvas.vue";
 </script>
 
 <template>
-  <Navbar />
+  <Canvas />
 </template>

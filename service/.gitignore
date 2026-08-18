@@ -12,3 +12,19 @@ PortfolioApi.Api/appsettings.Development.json
 
 # Optional: keep a template file if you want one later
 # PortfolioApi.Api/appsettings.Sample.json
+*/PortfolioApi.Api/obj/
+*/PortfolioApi.Api/bin/
+*/PortfolioApi.Services/obj/
+*/PortfolioApi.Services/bin/
+service/PortfolioApi.Services/bin/
+service/PortfolioApi.Api/obj/
+service/PortfolioApi.Api/bin/
+service/PortfolioApi.Services/obj/
+service/PortfolioApi.Api/appsettings.json
+service/PortfolioApi.appsettings.Development.json
+.DS_Store
+Thumbs.db
+service/PortfolioApi.Api/appsettings.json
+service/PortfolioApi.Api/appsettings.json
+service/PortfolioApi.Api/bin/Debug/net8.0/appsettings.json
+
