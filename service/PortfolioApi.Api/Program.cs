@@ -1,5 +1,6 @@
 using PortfolioApi.Services.Interfaces;
-using PortfolioApi.Services.Services;
+using PortfolioApi.Services;
+using PortfolioApi.Services.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpClient<IWeatherService, WeatherService>();
+builder.Services.Configure<OpenWeatherOptions>(
+    builder.Configuration.GetSection("OpenWeather"));
 
 var app = builder.Build();
 

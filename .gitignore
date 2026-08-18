@@ -30,6 +30,10 @@ dist/
 coverage/
 playwright-report/
 test-results/
+*/PortfolioApi.Api/obj/
+*/PortfolioApi.Api/bin/
+*/PortfolioApi.Services/obj/
+*/PortfolioApi.Services/bin/
 service/PortfolioApi.Services/bin/
 service/PortfolioApi.Api/obj/
 service/PortfolioApi.Api/bin/
@@ -38,3 +42,4 @@ service/PortfolioApi.Api/appsettings.json
 service/PortfolioApi.appsettings.Development.json
 .DS_Store
 Thumbs.db
+service/PortfolioApi.Api/
