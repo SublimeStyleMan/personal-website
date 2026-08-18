@@ -12,6 +12,12 @@ builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 builder.Services.Configure<OpenWeatherOptions>(
     builder.Configuration.GetSection("OpenWeather"));
 
+builder.Services.AddHttpClient<IAnimeCharacterService, AnimeCharacterService>(
+    client =>
+    {
+        client.BaseAddress = new Uri("https://api.jikan.moe/v4/");
+    });
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
