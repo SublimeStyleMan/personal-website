@@ -34,5 +34,7 @@ service/PorfolioApi.Services/bin/
 service/PortfolioApi.Api/obj/
 service/PortfolioApi.Api/bin/
 service/PortfolioApi.Services/obj/
+service/PortfolioApi.Api/appsettings.json
+service/PortfolioApi.appsettings.Development.json
 .DS_Store
 Thumbs.db
