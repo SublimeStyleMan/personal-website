@@ -43,3 +43,6 @@ service/PortfolioApi.appsettings.Development.json
 .DS_Store
 Thumbs.db
 service/PortfolioApi.Api/
+service/PortfolioApi.Api/appsettings.json
+service/PortfolioApi.Api/appsettings.json
+service/PortfolioApi.Api/bin/Debug/net8.0/appsettings.json
