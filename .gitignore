@@ -30,6 +30,8 @@ dist/
 coverage/
 playwright-report/
 test-results/
+
+# C# project files
 */PortfolioApi.Api/obj/
 */PortfolioApi.Api/bin/
 */PortfolioApi.Services/obj/
@@ -37,11 +39,11 @@ test-results/
 service/PortfolioApi.Services/bin/
 service/PortfolioApi.Api/obj/
 service/PortfolioApi.Api/bin/
-service/PortfolioApi.Services/obj/
+
+# Configuration files
 service/PortfolioApi.Api/appsettings.json
-service/PortfolioApi.appsettings.Development.json
+service/PortfolioApi.Api/appsettings.Development.json
+
+# OS files
 .DS_Store
 Thumbs.db
-service/PortfolioApi.Api/appsettings.json
-service/PortfolioApi.Api/appsettings.json
-service/PortfolioApi.Api/bin/Debug/net8.0/appsettings.json
