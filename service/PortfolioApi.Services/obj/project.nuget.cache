@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "VGiW48RkRFo=",
+  "dgSpecHash": "hZGwtIaQkuA=",
   "success": true,
   "projectFilePath": "/workspace/service/PortfolioApi.Services/PortfolioApi.Services.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/microsoft.extensions.configuration.abstractions/8.0.0/microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,0 +1,13 @@
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.AssemblyInfoInputs.cache
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.AssemblyInfo.cs
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.csproj.CoreCompileInputs.cache
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.sourcelink.json
+/workspace/service/PortfolioApi.Services/bin/Debug/net8.0/PortfolioApi.Services.deps.json
+/workspace/service/PortfolioApi.Services/bin/Debug/net8.0/PortfolioApi.Services.dll
+/workspace/service/PortfolioApi.Services/bin/Debug/net8.0/PortfolioApi.Services.pdb
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.csproj.AssemblyReference.cache
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.dll
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/refint/PortfolioApi.Services.dll
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/PortfolioApi.Services.pdb
+/workspace/service/PortfolioApi.Services/obj/Debug/net8.0/ref/PortfolioApi.Services.dll
