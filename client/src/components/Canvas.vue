@@ -46,12 +46,79 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import Footer from "./Footer.vue";
 import Navbar from "./Navbar.vue";
+import {
+  animeService,
+  type AnimeCharacter,
+} from "../Services/AnimeCharacterService.ts";
 
+// Data
 const canvas = ref<HTMLCanvasElement | null>(null);
 let animationFrameId: number;
 const time = ref(0);
+const slowedTimeValue = ref(0);
+const myCharacter = ref<AnimeCharacter | null>(null);
+let cloudOffset = 0;
 
-onMounted(() => {
+function drawClouds(
+  ctx: CanvasRenderingContext2D,
+  canvasWidth: number,
+  cloudY: number,
+  offset: number,
+): void {
+  const clouds = [
+    { x: canvasWidth * 0.05, width: 170, height: 52, speed: 0.22 },
+    { x: canvasWidth * 0.2, width: 210, height: 60, speed: 0.16 },
+    { x: canvasWidth * 0.38, width: 150, height: 48, speed: 0.28 },
+    { x: canvasWidth * 0.55, width: 230, height: 65, speed: 0.18 },
+    { x: canvasWidth * 0.7, width: 175, height: 55, speed: 0.24 },
+    { x: canvasWidth * 0.85, width: 160, height: 50, speed: 0.3 },
+    { x: canvasWidth * 0.98, width: 220, height: 58, speed: 0.2 },
+  ];
+
+  ctx.save();
+  ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+  ctx.shadowColor = "rgba(0, 0, 0, 0.2)";
+  ctx.shadowBlur = 12;
+
+  clouds.forEach(({ x, width, height, speed }) => {
+    const cloudX = ((x + offset * speed) % (canvasWidth + width)) - width / 2;
+
+    ctx.beginPath();
+    ctx.ellipse(cloudX, cloudY, width / 2, height / 2, 0, 0, Math.PI * 2);
+    ctx.ellipse(
+      cloudX - width * 0.2,
+      cloudY - height * 0.35,
+      width * 0.25,
+      height * 0.55,
+      0,
+      0,
+      Math.PI * 2,
+    );
+    ctx.ellipse(
+      cloudX + width * 0.15,
+      cloudY - height * 0.45,
+      width * 0.3,
+      height * 0.65,
+      0,
+      0,
+      Math.PI * 2,
+    );
+    ctx.fill();
+  });
+
+  ctx.restore();
+}
+
+// handle resize
+const handleResize = () => {
+  if (!canvas.value) return;
+
+  canvas.value.width = window.innerWidth;
+  canvas.value.height = window.innerHeight;
+};
+
+// onMounted
+onMounted(async () => {
   if (!canvas.value) return;
 
   const ctx = canvas.value.getContext("2d");
@@ -60,8 +127,27 @@ onMounted(() => {
   // Set canvas size
   canvas.value.width = window.innerWidth;
   canvas.value.height = window.innerHeight;
+  let sunStopped = false;
+  let stoppedSunX = 0;
 
   const animate = () => {
+    slowedTimeValue.value = time.value / (60 + 0.4 * time.value);
+
+    // Get the sunx and suny
+    const calculatedSunX =
+      canvas.value!.width / 2 + Math.sin(slowedTimeValue.value) * 300;
+    const calculatedSunY =
+      canvas.value!.height / 2 + Math.cos(slowedTimeValue.value) * 200 + 100;
+
+    // Freeze the sun when it first reaches the cloud layer.
+    if (!sunStopped && calculatedSunY <= 310) {
+      sunStopped = true;
+      stoppedSunX = calculatedSunX;
+    }
+
+    const sunX = sunStopped ? stoppedSunX : calculatedSunX;
+    const sunY = sunStopped ? 320 : calculatedSunY;
+
     // Clear canvas with gradient background
     const gradient = ctx.createLinearGradient(0, 0, 0, canvas.value!.height);
     gradient.addColorStop(0, "#1a1a4d"); // Dark blue
@@ -70,22 +156,29 @@ onMounted(() => {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.value!.width, canvas.value!.height);
 
-    // Calculate sun position (arc path)
-    const sunX = canvas.value!.width / 2 + Math.sin(time.value * 0.005) * 300;
-    const sunY =
-      canvas.value!.height / 2 + Math.cos(time.value * 0.005) * 200 + 100;
-
     // Draw sun
-    const sunGradient = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, 80);
+    const sunRadius = 120;
+    const sunGradient = ctx.createRadialGradient(
+      sunX,
+      sunY,
+      0,
+      sunX,
+      sunY,
+      sunRadius,
+    );
     sunGradient.addColorStop(0, "#ffff00");
     sunGradient.addColorStop(0.7, "#ff8800");
     sunGradient.addColorStop(1, "rgba(255, 200, 0, 0)");
 
-    // Path of the sun
+    // Draw the sun before the clouds so it can disappear behind them.
     ctx.fillStyle = sunGradient;
     ctx.beginPath();
-    ctx.arc(sunX, sunY, 80, 0, Math.PI * 2);
+    ctx.arc(sunX, sunY, sunRadius, 0, Math.PI * 2);
     ctx.fill();
+
+    // Move the clouds across the y = 320 layer every frame.
+    drawClouds(ctx, canvas.value!.width, 320, cloudOffset);
+    cloudOffset += 1;
 
     time.value++;
     animationFrameId = requestAnimationFrame(animate);
@@ -93,18 +186,29 @@ onMounted(() => {
 
   animate();
 
-  // Handle resize
-  const handleResize = () => {
-    canvas.value!.width = window.innerWidth;
-    canvas.value!.height = window.innerHeight;
-  };
+  // Handle resize listener
   window.addEventListener("resize", handleResize);
 
-  onUnmounted(() => {
-    cancelAnimationFrame(animationFrameId);
-    window.removeEventListener("resize", handleResize);
-  });
+  // Get anime character
+  myCharacter.value = await animeCharacter("Sailor");
 });
+
+// Handle unMounted
+onUnmounted(() => {
+  cancelAnimationFrame(animationFrameId);
+  window.removeEventListener("resize", handleResize);
+});
+
+// Get anime Character
+async function animeCharacter(character: string) {
+  const characters = (await animeService.searchCharacters(
+    character,
+    1,
+    20,
+  )) as AnimeCharacter[];
+
+  return characters[0];
+}
 </script>
 
 <style scoped>
