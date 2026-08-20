@@ -47,3 +47,11 @@ service/PortfolioApi.Api/appsettings.Development.json
 # OS files
 .DS_Store
 Thumbs.db
+service/PortfolioApi.Api/bin/Debug/net8.0/PortfolioApi.Api.dll
+service/PortfolioApi.Api/bin/Debug/net8.0/PortfolioApi.Api.dll
+service/PortfolioApi.Api/bin/Debug/net8.0/PortfolioApi.Api.pdb
+service/PortfolioApi.Api/bin/Debug/net8.0/PortfolioApi.Services.dll
+service/PortfolioApi.Api/bin/Debug/net8.0/PortfolioApi.Services.pdb
+service/PortfolioApi.Services/bin/Debug/net8.0/PortfolioApi.Services.deps.json
+service/PortfolioApi.Services/bin/Debug/net8.0/PortfolioApi.Services.dll
+service/PortfolioApi.Services/bin/Debug/net8.0/PortfolioApi.Services.pdb
