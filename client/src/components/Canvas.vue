@@ -37,12 +37,14 @@
           <p>Your contact info will go here</p>
         </section>
       </div>
+      <Footer />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
+import Footer from "./Footer.vue";
 import Navbar from "./Navbar.vue";
 
 const canvas = ref<HTMLCanvasElement | null>(null);
@@ -107,13 +109,17 @@ onMounted(() => {
 
 <style scoped>
 .canvas-container {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 40;
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #1a1a4d 0,
+    #4a148c 50vh,
+    #ff6b9d 100vh
+  );
 }
 
 .navbar {
@@ -125,19 +131,19 @@ canvas {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100vh;
   z-index: 1;
   pointer-events: none;
 }
 
 .content {
-  position: absolute;
+  position: relative;
   z-index: 60;
   width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 /* Dark scrollbar styling with visible arrow buttons */
